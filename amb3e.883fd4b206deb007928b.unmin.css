@@ -5078,6 +5078,11 @@ textarea {
           box-shadow: 0px 8px 0px 0px #fff, 0 2px 2px 0 rgba(0, 0, 0, 0.18);
 }
 
+.header-menu-link-content {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 .header-content-large {
   min-height: 84vh;
 }
@@ -5085,6 +5090,13 @@ textarea {
 @media (min-width: 480px) {
   .header-content-large {
     min-height: 50vh;
+  }
+}
+
+@media (min-width: 992px) {
+  .header-menu-link-content {
+    padding-left: 23px;
+    padding-right: 23px;
   }
 }
 
@@ -5096,7 +5108,7 @@ textarea {
 
 .iScrollIndicator {
   height: 4px !important;
-  background: #13283a !important;
+  background: #acacac !important;
   border-radius: 2px !important;
 }
 
@@ -5128,9 +5140,9 @@ textarea {
   height: 64px;
   pointer-events: none;
   content: '';
+  opacity: 0;
   -webkit-transform: translateX(0);
           transform: translateX(0);
-  opacity: 0;
 }
 
 [custom-scroll].scroll-initialized::after, [custom-scroll].scroll-initialized::before {
@@ -5140,25 +5152,25 @@ textarea {
 [custom-scroll]::before {
   left: -1px;
   margin-left: -22.5%;
-  background: -webkit-gradient(linear, left top, right top, color-stop(20%, #fff), to(transparent));
-  background: linear-gradient(to right, #fff 20%, transparent 100%);
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(20%, #fff), to(rgba(255, 255, 255, 0)));
+  background-image: linear-gradient(to right, #fff 20%, rgba(255, 255, 255, 0) 100%);
 }
 
 [custom-scroll]::after {
   right: -1px;
   margin-right: -22.5%;
-  background: -webkit-gradient(linear, right top, left top, color-stop(20%, #fff), to(transparent));
-  background: linear-gradient(to left, #fff 20%, transparent 100%);
+  background-image: -webkit-gradient(linear, right top, left top, color-stop(20%, #fff), to(rgba(255, 255, 255, 0)));
+  background-image: linear-gradient(to left, #fff 20%, rgba(255, 255, 255, 0) 100%);
 }
 
 [custom-scroll].bg-alabaster-transparent::before {
-  background: -webkit-gradient(linear, left top, right top, color-stop(20%, #f8f8f8), to(transparent));
-  background: linear-gradient(to right, #f8f8f8 20%, transparent 100%);
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(20%, #f8f8f8), to(rgba(248, 248, 248, 0)));
+  background-image: linear-gradient(to right, #f8f8f8 20%, rgba(248, 248, 248, 0) 100%);
 }
 
 [custom-scroll].bg-alabaster-transparent::after {
-  background: -webkit-gradient(linear, right top, left top, color-stop(20%, #f8f8f8), to(transparent));
-  background: linear-gradient(to left, #f8f8f8 20%, transparent 100%);
+  background-image: -webkit-gradient(linear, right top, left top, color-stop(20%, #f8f8f8), to(rgba(248, 248, 248, 0)));
+  background-image: linear-gradient(to left, #f8f8f8 20%, rgba(248, 248, 248, 0) 100%);
 }
 
 [custom-scroll].custom-scroll-tabs,

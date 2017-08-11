@@ -12080,7 +12080,19 @@
         return e;
     }
     var d = Boolean(u.default.tablet) || Boolean(u.default.mobile);
-    var p = function e(t, n) {
+    var p = function e(t) {
+        if (!t.path) {
+            return;
+        }
+        var n = t.path.some(function(e) {
+            return (0, r.default)(e).is("[custom-scroll]");
+        });
+        if (!n) {
+            return;
+        }
+        t.preventDefault();
+    };
+    var v = function e(t, n) {
         var i = n.maxScrollX, o = n.x;
         var s = Math.abs(o);
         var a = Math.abs(i);
@@ -12096,28 +12108,27 @@
             u.removeClass("scroll-start");
         }
     };
-    var v = function e(t, n, i) {
-        return function() {
-            setTimeout(function() {
-                if (!i) {
-                    return;
-                }
-                if (i.refresh) {
-                    i.refresh();
-                }
-                i.scrollToElement(n, null, true, true);
-                p(t, i);
-            }, 10);
-        };
+    var g = function e(t, n, i) {
+        setTimeout(function() {
+            if (!i) {
+                return;
+            }
+            if (i.refresh) {
+                i.refresh();
+            }
+            i.scrollToElement(n, null, true, true);
+            v(t, i);
+        }, 10);
     };
     (0, r.default)(document).ready(function() {
         var e = (0, r.default)("[custom-scroll]");
         var t = [];
         e.map(function() {
-            var e = (0, r.default)(this);
-            var n = e.find("> ul > li > a.active, > ul > li.active")[0];
-            var i = e.find("> ul > li > a, > ul > li");
-            var o = new s.default(this, {
+            var e = this;
+            var n = (0, r.default)(this);
+            var i = n.find("> ul > li > a.active, > ul > li.active")[0];
+            var o = n.find("> ul > li > a, > ul > li");
+            var a = new s.default(this, {
                 bindToWrapper: true,
                 bounce: !d,
                 disablePointer: !d,
@@ -12133,25 +12144,20 @@
                 scrollbars: !d,
                 tap: d
             });
-            e.addClass("scroll-initialized");
-            o.on("scroll", function() {
-                return p(e, o);
+            n.addClass("scroll-initialized");
+            a.on("scroll", function() {
+                return v(n, a);
             });
-            p(e, o);
-            t = [].concat(c(t), [ v(this, n, o) ]);
-            i.click(function() {
-                v(e, this, o)();
+            g(this, i, a);
+            t = [].concat(c(t), [ function() {
+                return g(e, i, a);
+            } ]);
+            o.click(function() {
+                g(n, this, a);
             });
         });
         if (d) {
-            document.addEventListener("touchmove", function(e) {
-                var t = e.path.some(function(e) {
-                    return (0, r.default)(e).is("[custom-scroll]");
-                });
-                if (t) {
-                    e.preventDefault();
-                }
-            }, h() ? l : false);
+            document.addEventListener("touchmove", p, h() ? l : false);
         }
         window.refreshScroll = function() {
             t.forEach(function(e) {
